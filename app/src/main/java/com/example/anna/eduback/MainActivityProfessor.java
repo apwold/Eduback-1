@@ -1,7 +1,6 @@
 package com.example.anna.eduback;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +26,8 @@ public class MainActivityProfessor extends AppCompatActivity implements AdapterV
 
         //Lage en view for hvordan hver linje i lista skal se ut. Typ lite bilde helt til venstre, kun tekst osv.
         //Simple list item 1 er kun tekst, nr 2 er med bilde. her kan man lage hva man vil.
-        ArrayAdapter<String> FagAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, fag);
+        ArrayAdapter<String> FagAdapter;
+        FagAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, fag);
 
         FagListView.setAdapter(FagAdapter);
 
