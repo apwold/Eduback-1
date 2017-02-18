@@ -14,7 +14,7 @@ public class MainActivityProfessor extends AppCompatActivity implements AdapterV
     String[] fag = new String[]{"Matematikk1", "Objektorientert Programmering", "Diskret Matematikk"};
 
     ListView FagListView;
-    Button NewFagButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,6 @@ public class MainActivityProfessor extends AppCompatActivity implements AdapterV
         setContentView(R.layout.activity_main_professor);
 
        FagListView = (ListView) findViewById(R.id.FagListView);
-        NewFagButton = (Button) findViewById(R.id.newFag);
 
         //Lage en view for hvordan hver linje i lista skal se ut. Typ lite bilde helt til venstre, kun tekst osv.
         //Simple list item 1 er kun tekst, nr 2 er med bilde. her kan man lage hva man vil.
@@ -33,13 +32,6 @@ public class MainActivityProfessor extends AppCompatActivity implements AdapterV
 
         FagListView.setOnItemClickListener(this);
 
-        NewFagButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Her vil jeg at det skal kunne opprettes et nytt fag for at det deretter skal legges til i stringen med fag
-            }
-        });
     }
 
     @Override
