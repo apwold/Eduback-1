@@ -9,5 +9,7 @@ public class Fag extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fag);
+        System.out.println("Anna test");
     }
+
 }
