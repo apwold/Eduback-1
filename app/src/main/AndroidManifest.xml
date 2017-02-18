@@ -16,7 +16,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivityProfessor" />
-        <activity android:name=".LearningGoals"></activity>
+        <activity android:name=".LearningGoals" />
+        <activity android:name=".AddLearningGoal"
+            android:theme="@style/AppTheme.CustomTheme"
+            >
+        </activity>
     </application>
-
 </manifest>
