@@ -36,9 +36,8 @@ public class MainActivityProfessor extends AppCompatActivity implements AdapterV
         NewFagButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
-                Intent callIntent = new Intent(Intent.ACTION_DIAL, myPhoneNumber);
-                startActivity(callIntent);
+
+                //Her vil jeg at det skal kunne opprettes et nytt fag for at det deretter skal legges til i stringen med fag
             }
         });
     }
