@@ -49,66 +49,25 @@ public class MainActivityProfessor extends AppCompatActivity implements AdapterV
         FagAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, fagliste);
 
         FagListView.setAdapter(FagAdapter);
-
         FagListView.setOnItemClickListener(this);
-
         AddFagButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                HttpURLConnection urlConnection = null;
-                BufferedReader reader = null;
-
-
-                try {
-                    URL url = new URL("http://jsonparsingdemo-cec5b.firebaseapp.com/jsonData/moviesDemoItem.txt");
-                    urlConnection = (HttpURLConnection) url.openConnection();
-                    urlConnection.connect();
-
-                    InputStream stream = urlConnection.getInputStream();
-                    reader = new BufferedReader(new InputStreamReader(stream));
-
-
-                    StringBuffer buffer = new StringBuffer();
-
-                    String line = "";
-                    while ((line = reader.readLine()) != null) {
-                        buffer.append(line);
-                    }
-                    tvData.setText(buffer.toString());
-
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    if (urlConnection != null) {
-                        urlConnection.disconnect();
-                    }
-                    try {
-                        if (reader != null) {
-                            reader.close();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-            }
-
-
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent moveToDetailIntent = new Intent(getBaseContext(), Fagside.class);
-                moveToDetailIntent.putExtra("Fag", fagliste.get(position));
-                startActivity(moveToDetailIntent);
-
+            public void onClick(View v) {
+                new JSONTask().execute("http://jsonparsingdemo-cec5b.firebaseapp.com/jsonData/moviesDemoItem.txt");
             }
-        });
-    };
+        }
+
+        );
+
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // System.out.println(liste[position]);
 
+        Intent moveToDetailIntent=new Intent(getBaseContext(),Fag.class);
+        moveToDetailIntent.putExtra("Fag",fagliste.get(position));
+        startActivity(moveToDetailIntent);
     }
 }
+
