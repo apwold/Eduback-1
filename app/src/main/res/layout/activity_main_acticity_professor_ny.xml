@@ -49,9 +49,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:text="Skriv inn fagkode:"
+            android:text="@string/skriv_inn_fagkode"
             android:ems="10"
-            android:id="@+id/InsertFag" />
+            android:id="@+id/InsertFag"
+            android:lineSpacingExtra="8sp"
+            android:fadeScrollbars="false"
+            android:linksClickable="false"
+            android:layout_weight="0.00"
+            android:singleLine="true" />
 
     </LinearLayout>
+
 </LinearLayout>

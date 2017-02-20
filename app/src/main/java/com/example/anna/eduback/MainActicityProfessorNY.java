@@ -49,12 +49,12 @@ public class MainActicityProfessorNY extends AppCompatActivity implements Adapte
 
         FagListView.setAdapter(FagAdapter);
         FagListView.setOnItemClickListener(this);
-        fagkode = InsertFagEditText.getText().toString();
         AddFagButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                new JSONTask().execute("http://www.ime.ntnu.no/api/course/" +fagkode);
+                fagkode = InsertFagEditText.getText().toString();
+                new JSONTask().execute("http://www.ime.ntnu.no/api/course/" + fagkode);
             }
         }
 
