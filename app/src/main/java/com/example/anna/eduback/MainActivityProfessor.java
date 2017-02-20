@@ -8,7 +8,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +33,7 @@ public class MainActivityProfessor extends AppCompatActivity implements AdapterV
 
     ListView FagListView;
     Button AddFagButton;
+    final TextView tvData = (TextView) findViewById(R.id.tvJsonItem);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,25 +53,62 @@ public class MainActivityProfessor extends AppCompatActivity implements AdapterV
         FagListView.setOnItemClickListener(this);
 
         AddFagButton.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-                Fag nyttFag= new Fag();
-                fagliste.add(nyttFag.fagNavn);
-                //HER VIL VI SØKE OPP FAG I NTNU DATABASEN ???
-                //SIKRE AT DET ER ORDENTLIGE FAG SOM BLIR LAGT INN
+                HttpURLConnection urlConnection = null;
+                BufferedReader reader = null;
+
+
+                try {
+                    URL url = new URL("http://jsonparsingdemo-cec5b.firebaseapp.com/jsonData/moviesDemoItem.txt");
+                    urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection.connect();
+
+                    InputStream stream = urlConnection.getInputStream();
+                    reader = new BufferedReader(new InputStreamReader(stream));
+
+
+                    StringBuffer buffer = new StringBuffer();
+
+                    String line = "";
+                    while ((line = reader.readLine()) != null) {
+                        buffer.append(line);
+                    }
+                    tvData.setText(buffer.toString());
+
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                    try {
+                        if (reader != null) {
+                            reader.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent moveToDetailIntent = new Intent(getBaseContext(), Fagside.class);
+                moveToDetailIntent.putExtra("Fag", fagliste.get(position));
+                startActivity(moveToDetailIntent);
 
             }
-        }
-        );
-
-
-    }
+        });
+    };
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent moveToDetailIntent = new Intent(getBaseContext(), Fagside.class);
-        moveToDetailIntent.putExtra("Fag", fagliste.get(position));
-        startActivity(moveToDetailIntent);
 
     }
 }
