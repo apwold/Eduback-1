@@ -21,7 +21,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="118dp"
-        android:id="@+id/editText" />
+        android:id="@+id/addLGEditText" />
 
     <Button
         android:text="Submit"

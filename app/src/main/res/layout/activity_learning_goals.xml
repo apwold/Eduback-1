@@ -19,7 +19,7 @@
         android:text="Add new Learning Goal"
         android:id="@+id/baddLG"/>
     <ExpandableListView
-        android:id="@+id/expandableLV"
+        android:id="@+id/expLV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="40dp" />
