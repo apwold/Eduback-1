@@ -1,5 +1,6 @@
 package com.example.anna.eduback;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,6 @@ public class LearningGoals extends AppCompatActivity implements View.OnClickList
     private List<String> listDataHeader = new ArrayList<>();
     private HashMap<String, List<String>> listHash = new HashMap<>();
     Button addLG;
-    String newLG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,28 +24,32 @@ public class LearningGoals extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_learning_goals);
 
         listView = (ExpandableListView) findViewById(R.id.expLV);
-        addLGoal(newLG);
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
         listView.setAdapter(listAdapter);
 
         addLG = (Button) findViewById(R.id.baddLG);
         addLG.setOnClickListener(this);
 
+        String newLG = (String) getIntent().getExtras().get("NewLG");
+        addLGoal(newLG);
 
     }
 
-    private void addLGoal(String newLG) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.baddLG:
+                Intent addLearningGoal = new Intent(getApplicationContext(), AddLearningGoal.class);
+                startActivity(addLearningGoal);
+        }
+    }
+
+    private void addLGoal(String newLG) { //Fra addLearningGoal-klasse
         listDataHeader.add(newLG);
         List<String> nyttlaringsmal = new ArrayList<>();
         nyttlaringsmal.add("Ingen forståelse");
         nyttlaringsmal.add("Delvis forståelse");
         nyttlaringsmal.add("Full forståelse");
         listHash.put(listDataHeader.get(listDataHeader.size()), nyttlaringsmal);
-    }
-
-    
-    @Override
-    public void onClick(View v) {
-
     }
 }
