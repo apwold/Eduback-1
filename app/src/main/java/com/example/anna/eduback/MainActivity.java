@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToTheOtherActivity = new Intent(getApplicationContext(), MainActivityProfessor.class);
+                Intent goToTheOtherActivity = new Intent(getApplicationContext(), MainActicityProfessorNY.class);
                 startActivity(goToTheOtherActivity);
             }
         });

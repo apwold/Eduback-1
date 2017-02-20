@@ -42,8 +42,16 @@
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvJsonItem"
-            android:layout_weight="0.92" />
+            android:id="@+id/fagJsonItem"
+            android:layout_weight="0.64" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="Skriv inn fagkode:"
+            android:ems="10"
+            android:id="@+id/InsertFag" />
 
     </LinearLayout>
 </LinearLayout>

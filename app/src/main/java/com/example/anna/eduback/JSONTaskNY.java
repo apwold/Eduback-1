@@ -19,10 +19,7 @@ import java.net.URL;
  * Created by Bruker on 20.02.2017.
  */
 
-public class JSONTask extends AsyncTask<String,String,String> {
-
-    private TextView tvData;
-
+public class JSONTaskNY extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String... params) {
@@ -47,18 +44,18 @@ public class JSONTask extends AsyncTask<String,String,String> {
                 buffer.append(line);
             }
 
-           String finalJson = buffer.toString();
+            String finalJson = buffer.toString();
             JSONObject parentObject = new JSONObject(finalJson);
-            JSONArray parentArray = parentObject.getJSONArray("movies");
+            JSONArray parentArray = parentObject.getJSONArray("course");
 
             StringBuffer finalBufferedData = new StringBuffer();
-            for(int i=0; i<parentArray.length(); i++){
-                JSONObject finalObject = parentArray.getJSONObject(i);
-                String moviename = finalObject.getString("movie");
-                int year = finalObject.getInt("year");
-                finalBufferedData.append(moviename + "-" +  year + "\n");
+            //for(int i=0; i<parentArray.length(); i++){
+                JSONObject finalObject = parentArray.getJSONObject(0);
+                String fagnavn = finalObject.getString("name");
+                String kode = finalObject.getString("code");
+                finalBufferedData.append(kode + "-" +  fagnavn + "\n");
 
-            }
+            //}
             return finalBufferedData.toString();
 
         } catch (MalformedURLException e) {
@@ -85,6 +82,6 @@ public class JSONTask extends AsyncTask<String,String,String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        MainActivityProfessor.tvData.setText(result);
+        MainActicityProfessorNY.fagData.setText(result);
     }
 }
